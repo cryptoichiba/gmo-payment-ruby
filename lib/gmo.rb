@@ -9,6 +9,7 @@ require "gmo/site_api"
 require "gmo/shop_and_site_api"
 require "gmo/remittance_api"
 require "gmo/version"
+require "gmo/secure_api"
 
 # Ruby client library for the GMO Payment Platform.
 
@@ -97,6 +98,10 @@ module GMO
 
     class RemittanceAPI < API
       include RemittanceAPIMethods
+    end
+
+    class SecureAPI < API
+      include SecureAPIMethods
     end
 
   end
