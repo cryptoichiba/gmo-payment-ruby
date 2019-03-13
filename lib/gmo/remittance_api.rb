@@ -58,8 +58,12 @@ module GMO
         name = "/api/AccountRegistration.idPass"
         options[:method] = 1
         options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
-        required = %i(bank_id bank_code branch_code account_type account_name account_number)
+        required = %i(bank_id bank_code account_type account_name)
         assert_required_options(required, options)
+        # ゆうちょ番号が指定されているときは口座番号は削除する
+        options.delete(:account_number) if options[:account_number_jp].present?
+        # ゆうちょ記号が指定されているときは支店コードは削除する
+        options.delete(:branch_code) if options[:branch_code_jp].present?
         post_request name, options
       end
 
@@ -96,8 +100,12 @@ module GMO
         name = "/api/AccountRegistration.idPass"
         options[:method] = 2
         options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
-        required = %i(bank_id bank_code branch_code account_type account_name account_number)
+        required = %i(bank_id bank_code account_type account_name)
         assert_required_options(required, options)
+        # ゆうちょ番号が指定されているときは口座番号は削除する
+        options.delete(:account_number) if options[:account_number_jp].present?
+        # ゆうちょ記号が指定されているときは支店コードは削除する
+        options.delete(:branch_code) if options[:branch_code_jp].present?
         post_request name, options
       end
 
