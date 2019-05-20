@@ -41,7 +41,7 @@ module GMO
         # Parse the body as Query string
         response = Rack::Utils.parse_nested_query(result.body.to_s)
         # converting to UTF-8
-        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
+        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-m0Z1 -S -w',v)] }]
         # Check for errors if provided a error_checking_block
         yield(body) if error_checking_block
         # Return result

@@ -108,6 +108,16 @@ module GMO
         post_request name, options
       end
 
+      #  [銀行振込バーチャル口座]
+      #  600.2.1 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_bank_virtual(options = {})
+        name = "EntryTranGANB.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -249,6 +259,24 @@ module GMO
       def exec_tran_brandtoken(options = {})
         name = "ExecTranBrandtoken.idPass"
         options[:token_type] = GMO::Const::TOKEN_TYPES_MAP[options[:token_type]]
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【銀行振込バーチャル口座】
+      # 600.2.2 取引実行
+      def exec_tran_bank_virtual(options = {})
+        name = "ExecTranGANB.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【銀行振込バーチャル口座】
+      # 600.2.3 取引停止
+      def exec_cancel_tran_bank_virtual(options = {})
+        name = "CancelTranGANB.idPass"
         required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
