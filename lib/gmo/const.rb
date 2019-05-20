@@ -846,7 +846,6 @@ module GMO
       'M11010099' => 'Transaction settlement is not complete',
       'M11010999' => 'Transaction settlement may already be complete',
       'M91099999' => 'Settlement process failed',
-      # 'M01530005' => '', クレカ定義されているので銀行でのメッセージは調整が必要
       'M01530008' => 'Account name form invalid',
       'M01531008' => 'Transaction Expiry Days Format Incorrect',
       'M01531011' => 'Account Name Number of Digits Incorrect',
@@ -1988,7 +1987,6 @@ module GMO
       'M11010099' => 'この取引は決済が終了していません。',
       'M11010999' => '特になし',
       'M91099999' => '決済処理に失敗しました。',
-      # 'M01530005' => '', クレカ定義されているので銀行でのメッセージは調整が必要
       'M01530008' => '口座名義名の書式が不正です。',
       'M01531008' => '取引有効日数の書式が不正です。',
       'M01531011' => '口座名義名の桁数が不正です。',
