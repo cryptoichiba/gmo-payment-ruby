@@ -80,42 +80,42 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
-  describe "#entry_tran_pay_easy" do
-    it "gets data about a transaction", :vcr do
-      order_id = @order_id
-      result = @service.entry_tran_pay_easy({
-        :order_id => order_id,
-        :amount => 100
-      })
-      result["AccessID"].nil?.should_not be_truthy
-      result["AccessPass"].nil?.should_not be_truthy
-    end
-
-    it "got error if missing options", :vcr do
-      lambda {
-        result = @service.entry_tran_pay_easy()
-      }.should raise_error("Required order_id, amount were not provided.")
-    end
-  end
-
-  describe "#entry_tran_linepay" do
-    it "gets data about a transaction", :vcr do
-      order_id = @order_id
-      result = @service.entry_tran_linepay({
-        :order_id => order_id,
-        :job_cd => 'CAPTURE',
-        :amount => 100
-      })
-      result["AccessID"].nil?.should_not be_truthy
-      result["AccessPass"].nil?.should_not be_truthy
-    end
-
-    it "got error if missing options", :vcr do
-      lambda {
-        result = @service.entry_tran_linepay()
-      }.should raise_error("Required order_id, job_cd, amount were not provided.")
-    end
-  end
+  # describe "#entry_tran_pay_easy" do
+  #   it "gets data about a transaction", :vcr do
+  #     order_id = @order_id
+  #     result = @service.entry_tran_pay_easy({
+  #       :order_id => order_id,
+  #       :amount => 100
+  #     })
+  #     result["AccessID"].nil?.should_not be_truthy
+  #     result["AccessPass"].nil?.should_not be_truthy
+  #   end
+  #
+  #   it "got error if missing options", :vcr do
+  #     lambda {
+  #       result = @service.entry_tran_pay_easy()
+  #     }.should raise_error("Required order_id, amount were not provided.")
+  #   end
+  # end
+  #
+  # describe "#entry_tran_linepay" do
+  #   it "gets data about a transaction", :vcr do
+  #     order_id = @order_id
+  #     result = @service.entry_tran_linepay({
+  #       :order_id => order_id,
+  #       :job_cd => 'CAPTURE',
+  #       :amount => 100
+  #     })
+  #     result["AccessID"].nil?.should_not be_truthy
+  #     result["AccessPass"].nil?.should_not be_truthy
+  #   end
+  #
+  #   it "got error if missing options", :vcr do
+  #     lambda {
+  #       result = @service.entry_tran_linepay()
+  #     }.should raise_error("Required order_id, job_cd, amount were not provided.")
+  #   end
+  # end
 
   describe "#entry_tran_brandtoken" do
     it "gets data about a transaction", :vcr do
@@ -154,7 +154,7 @@ describe "GMO::Payment::ShopAPI" do
         :method        => 1,
         :pay_times     => 1,
         :card_no       => "4111111111111111",
-        :expire        => "1405",
+        :expire        => "2105",
         :client_field_1 => client_field_1
       })
       result["ACS"].nil?.should_not be_truthy
