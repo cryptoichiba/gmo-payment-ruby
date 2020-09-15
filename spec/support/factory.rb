@@ -5,7 +5,7 @@ def generate_token
 end
 
 def generate_id
-  "rspec" + Time.now.to_i
+  Time.now.to_i
 end
 
 ACCESS_ID = generate_token

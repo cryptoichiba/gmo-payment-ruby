@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranGANB.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>600<TOKEN>28432&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, <TOKEN>5 Sep 2020 00:07:<TOKEN>3 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>600<TOKEN>28432&AccessID=0<TOKEN>08e9ac<TOKEN>5607<TOKEN>cc4ee72ca9349bd6fa&AccessPass=085b398f6a2<TOKEN>ee0ef0d8<TOKEN>be9eb69accb
+  recorded_at: Tue, 15 Sep 2020 00:07:13 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTranGANB.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>600<TOKEN>28432&AccessID=0<TOKEN>08e9ac<TOKEN>5607<TOKEN>cc4ee72ca9349bd6fa&AccessPass=085b398f6a2<TOKEN>ee0ef0d8<TOKEN>be9eb69accb&TradeDays=7&TradeClientName=furikomi&ClientField<TOKEN>=client_field<TOKEN>&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, <TOKEN>5 Sep 2020 00:07:<TOKEN>3 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        QWNjZXNzSUQ9MDxUT0tFTj4wOGU5YWM8VE9LRU4+NTYwNzxUT0tFTj5jYzRlZTcyY2E5MzQ5YmQ2ZmEmQmFua0NvZGU9MDM8VE9LRU4+MCZCYW5rTmFtZT283rC00bWwsbW/3tfIr8QmQnJhbmNoQ29kZT01MDMmQnJhbmNoTmFtZT22v7O8w90mQWNjb3VudFR5cGU9PFRPS0VOPiZBY2NvdW50TnVtYmVyPTgwMzcwODQmQWNjb3VudEhvbGRlck5hbWU9w73EvK6vzN9udWxsJkF2YWlsYWJsZURhdGU9MjAyMDA5MjI=
+  recorded_at: Tue, 15 Sep 2020 00:07:13 GMT
+recorded_with: VCR 6.0.0
