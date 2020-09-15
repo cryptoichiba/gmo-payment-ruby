@@ -1,0 +1,35 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranGANB.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>600073<TOKEN>9<TOKEN>&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, <TOKEN>4 Sep 2020 08:46:32 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>600073<TOKEN>9<TOKEN>&AccessID=acee45b26609ab44b<TOKEN>6ae<TOKEN>f8067<TOKEN>c853&AccessPass=004992cd6fa65772f2<TOKEN>94a5066444f6e
+  recorded_at: Mon, 14 Sep 2020 08:46:32 GMT
+recorded_with: VCR 6.0.0

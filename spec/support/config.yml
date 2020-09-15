@@ -1,12 +1,12 @@
-shop_id: tshop0001
-shop_pass: 1
-site_id: tsite0001
-site_pass: 1
+shop_id: tshop00036263
+shop_pass: 14pwdzm1
+site_id: tsite00032286
+site_pass: z1sxyvbq
 host: pt01.mul-pay.jp
 token_member_id: 1
 token: 1
 
 remittance:
-  shop_id: rshop00000001
-  shop_pass: 1234abcd
+  shop_id: rshop00000169
+  shop_pass: oMZ2K9WH
   host: test-remittance.gmopg.jp

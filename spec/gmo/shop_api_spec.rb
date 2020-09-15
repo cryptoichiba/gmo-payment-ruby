@@ -136,6 +136,24 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_bank_virtual" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_bank_virtual({
+                                           :order_id => order_id,
+                                           :amount => 100
+                                       })
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_bank_virtual()
+      }.should raise_error("Required order_id, amount were not provided.")
+    end
+  end
+
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
@@ -154,7 +172,7 @@ describe "GMO::Payment::ShopAPI" do
         :method        => 1,
         :pay_times     => 1,
         :card_no       => "4111111111111111",
-        :expire        => "1405",
+        :expire        => "2105",
         :client_field_1 => client_field_1
       })
       result["ACS"].nil?.should_not be_truthy
@@ -416,6 +434,42 @@ describe "GMO::Payment::ShopAPI" do
         result["ClientField2"].nil?.should_not be true
         result["ClientField3"].nil?.should_not be true
       end
+    end
+  end
+
+  describe "#exec_tran_bank_virtual" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran_bank_virtual({
+                                           :order_id => order_id,
+                                           :amount => 100
+                                       })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_bank_virtual({
+                                          :order_id      => order_id,
+                                          :access_id     => access_id,
+                                          :access_pass   => access_pass,
+                                          :trade_days   => 7,
+                                          # :account_holder_optional_name => 'kouzamei',
+                                          :trade_client_name => 'furikomi',
+                                          :client_field_1 => client_field_1
+                                      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["BankCode"].nil?.should_not be_truthy
+      result["BankName"].nil?.should_not be_truthy
+      result["BranchCode"].nil?.should_not be_truthy
+      result["BranchName"].nil?.should_not be_truthy
+      result["AccountType"].nil?.should_not be_truthy
+      result["AccountHolderName"].nil?.should_not be_truthy
+      result["AvailableDate"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_bank_virtual()
+      }.should raise_error("Required access_id, access_pass, order_id were not provided.")
     end
   end
 
@@ -761,4 +815,39 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#exec_cancel_tran_bank_virtual" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran_bank_virtual({
+                                                    :order_id => order_id,
+                                                    :amount => 100
+                                                })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_bank_virtual({
+                                                   :order_id      => order_id,
+                                                   :access_id     => access_id,
+                                                   :access_pass   => access_pass,
+                                                   :trade_days   => 7,
+                                                   # :account_holder_optional_name => 'kouzamei',
+                                                   :trade_client_name => 'furikomi',
+                                                   :client_field_1 => client_field_1
+                                               })
+
+      result = @service.exec_cancel_tran_bank_virtual({
+                                                          :order_id      => order_id,
+                                                          :access_id     => access_id,
+                                                          :access_pass   => access_pass
+                                                      })
+      result["OrderID"].nil?.should_not be_truthy
+      expect(result["Status"]).to eq "STOP"
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_cancel_tran_bank_virtual()
+      }.should raise_error("Required access_id, access_pass, order_id were not provided.")
+    end
+  end
 end
