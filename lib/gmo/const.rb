@@ -133,6 +133,7 @@ module GMO
       :trade_client_name     => "TradeClientName",
       :trade_client_mailaddress => "TradeClientMailaddress",
       :trade_days            => "TradeDays",
+      :trade_reason          => "TradeReason",
       :error_rcv_url         => "ErrorRcvURL",
       :product_name          => "ProductName",
       :product_image_url     => "ProductImageUrl",
