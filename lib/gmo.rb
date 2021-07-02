@@ -38,8 +38,11 @@ module GMO
           }
           raise GMO::Payment::ServerError.new(result.body, error_detail)
         end
-        # Parse the body as Query string
-        response = Rack::Utils.parse_nested_query(result.body.to_s)
+        # Transform the body to Hash
+        # "ACS=1&ACSUrl=url" => { "ACS" => "1", ACSUrl => "url" }
+        Rails.logger.info "GMO raw response:  " + result.body.to_s
+        key_values = result.body.to_s.split('&').map { |str| str.split('=', 2) }.flatten
+        response = Hash[*key_values]
         # converting to UTF-8
         body = response = Hash[response.map { |k,v| [k, NKF.nkf('-m0Z1 -S -w',v)] }]
         # Check for errors if provided a error_checking_block
